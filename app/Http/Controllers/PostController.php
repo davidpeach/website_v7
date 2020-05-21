@@ -14,6 +14,12 @@ class PostController extends Controller
         return view('blog.index', compact('posts'));
     }
 
+    public function create()
+    {
+        return view('dashboard.create-post');
+    }
+
+
     public function store()
     {
         $this->validate(request(), [
@@ -21,6 +27,8 @@ class PostController extends Controller
         ]);
 
         Post::create(request()->all());
+
+        return back();
     }
 
 }

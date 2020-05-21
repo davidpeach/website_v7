@@ -17,14 +17,13 @@ Route::view('/', 'welcome')->name('home');
 
 
 Route::get('/blog', 'PostController@index')->name('blog');
-
+Route::post('/posts', 'PostController@store')->name('post.store');
 
 
 
 // Pre Scaffolded Routes
 Route::middleware('guest')->group(function () {
     Route::view('login', 'auth.login')->name('login');
-    Route::view('register', 'auth.register')->name('register');
 });
 
 Route::view('password/reset', 'auth.passwords.email')->name('password.request');

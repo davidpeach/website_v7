@@ -24,6 +24,8 @@ class Register extends Component
 
     public function register()
     {
+        return abort(404);
+
         $this->validate([
             'name' => ['required'],
             'email' => ['required', 'email', 'unique:users'],

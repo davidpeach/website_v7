@@ -15,6 +15,18 @@ class RegisterTest extends TestCase
     use RefreshDatabase;
 
     /** @test */
+    public function registration_is_disabled()
+    {
+        $this->withExceptionHandling()
+            ->get('/register')
+            ->assertStatus(404);
+    }
+
+    /**********************************************
+     * As this is my personal site, I don't want
+     * any new registrations to happen.
+     **********************************************/
+
     function registration_page_contains_livewire_component()
     {
         $this->get(route('register'))
@@ -22,7 +34,6 @@ class RegisterTest extends TestCase
             ->assertSeeLivewire('auth.register');
     }
 
-    /** @test */
     public function is_redirected_if_already_logged_in()
     {
         $user = factory(User::class)->create();
@@ -33,7 +44,6 @@ class RegisterTest extends TestCase
             ->assertRedirect(route('home'));
     }
 
-    /** @test */
     function a_user_can_register()
     {
         Livewire::test('auth.register')
@@ -48,7 +58,6 @@ class RegisterTest extends TestCase
         $this->assertEquals('tallstack@example.com', Auth::user()->email);
     }
 
-    /** @test */
     function name_is_required()
     {
         Livewire::test('auth.register')
@@ -57,7 +66,6 @@ class RegisterTest extends TestCase
             ->assertHasErrors(['email' => 'required']);
     }
 
-    /** @test */
     function email_is_required()
     {
         Livewire::test('auth.register')
@@ -66,7 +74,6 @@ class RegisterTest extends TestCase
             ->assertHasErrors(['email' => 'required']);
     }
 
-    /** @test */
     function email_is_valid_email()
     {
         Livewire::test('auth.register')
@@ -75,7 +82,6 @@ class RegisterTest extends TestCase
             ->assertHasErrors(['email' => 'email']);
     }
 
-    /** @test */
     function email_hasnt_been_taken_already()
     {
         factory(User::class)->create(['email' => 'tallstack@example.com']);
@@ -86,7 +92,6 @@ class RegisterTest extends TestCase
             ->assertHasErrors(['email' => 'unique']);
     }
 
-    /** @test */
     function see_email_hasnt_already_been_taken_validation_message_as_user_types()
     {
         factory(User::class)->create(['email' => 'tallstack@example.com']);
@@ -99,7 +104,6 @@ class RegisterTest extends TestCase
             ->assertHasErrors(['email' => 'unique']);
     }
 
-    /** @test */
     function password_is_required()
     {
         Livewire::test('auth.register')
@@ -109,7 +113,6 @@ class RegisterTest extends TestCase
             ->assertHasErrors(['password' => 'required']);
     }
 
-    /** @test */
     function password_is_minimum_of_eight_characters()
     {
         Livewire::test('auth.register')
@@ -119,7 +122,6 @@ class RegisterTest extends TestCase
             ->assertHasErrors(['password' => 'min']);
     }
 
-    /** @test */
     function password_matches_password_confirmation()
     {
         Livewire::test('auth.register')

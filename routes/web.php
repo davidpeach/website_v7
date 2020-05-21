@@ -15,6 +15,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'welcome')->name('home');
 
+
+Route::get('/blog', 'PostController@index')->name('blog');
+
+
+
+
+// Pre Scaffolded Routes
 Route::middleware('guest')->group(function () {
     Route::view('login', 'auth.login')->name('login');
     Route::view('register', 'auth.register')->name('register');

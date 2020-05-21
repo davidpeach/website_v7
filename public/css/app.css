@@ -38373,6 +38373,18 @@ input:invalid, textarea:invalid, select:invalid {
  * .skew-45 { ... }
  */
 
+.h-screen-70 {
+  height: 70vh;
+}
+
+.font-page-heading {
+  font-family: "Work Sans";
+}
+
+.font-reading {
+  font-family: "Martel", serif;
+}
+
 @media (min-width: 640px) {
   .sm\:space-y-0 > :not(template) ~ :not(template) {
     --space-y-reverse: 0;

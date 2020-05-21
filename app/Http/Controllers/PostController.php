@@ -9,9 +9,18 @@ class PostController extends Controller
 {
     public function index()
     {
-    	$posts = Post::all();
+        $posts = Post::all();
 
-    	return view('blog.index', compact('posts'));
+        return view('blog.index', compact('posts'));
+    }
+
+    public function store()
+    {
+        $this->validate(request(), [
+            'body' => 'required',
+        ]);
+
+        Post::create(request()->all());
     }
 
 }

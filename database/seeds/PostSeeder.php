@@ -11,6 +11,9 @@ class PostSeeder extends Seeder
      */
     public function run()
     {
+        $user = factory('App\User')->create();
+        auth()->loginUsingId($user->id);
+
         factory('App\Post', 20)->create();
     }
 }

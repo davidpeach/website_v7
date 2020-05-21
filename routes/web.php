@@ -19,6 +19,7 @@ Route::view('/', 'welcome')->name('home');
 Route::get('/blog', 'PostController@index')->name('blog');
 Route::post('/posts', 'PostController@store')->name('post.store');
 
+Route::get('/stream', 'StreamController@index')->name('stream');
 
 
 // Pre Scaffolded Routes

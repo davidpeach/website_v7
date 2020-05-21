@@ -10,4 +10,18 @@ class Post extends Model
         'title',
         'body',
     ];
+
+    public static function boot()
+    {
+        static::created(function ($post) {
+            Activity::create([
+                'type' => 'created_post',
+                'user_id' => auth()->id(),
+                'subject_id' => $post->id,
+                'subject_type' => get_class($post),
+            ]);
+        });
+
+        parent::boot();
+    }
 }

@@ -17,6 +17,7 @@ style="background-image: url(https://davidpeach.co.uk/app/uploads/2017/10/elle-f
 			<nav class="flex flex-grow justify-end text-lg">
 				<a href="/">Home</a>
 				<a href="{{ route('blog') }}" class="ml-6">Blog</a>
+				<a href="{{ route('stream') }}" class="ml-6">Stream</a>
 				@include('components.login-logout')
 			</nav>
 		</div>

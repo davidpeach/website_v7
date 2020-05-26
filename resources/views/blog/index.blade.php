@@ -9,6 +9,7 @@
 @endsection
 
 @section('content')
+	@include('partials._post-create')
 	<section class="w-2/5 m-auto">
 		@foreach($posts as $post)
 		<article class="mt-15 pb-15">

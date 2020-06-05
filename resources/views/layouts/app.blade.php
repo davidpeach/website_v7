@@ -4,7 +4,7 @@
 
 <header
 class="bg-fixed bg-cover bg-center bg-no-repeat"
-style="background-image: url(https://davidpeach.co.uk/app/uploads/2017/10/elle-fanning-neon-demon-1.jpg)">
+style="background-image: url(https://cdn.davidpeach.co.uk/2017/10/elle-fanning-neon-demon-1.jpg)">
 	<div
 	class="h-screen-70 flex flex-col justify-between text-white bg-black bg-opacity-50"
 

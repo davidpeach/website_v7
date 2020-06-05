@@ -1,5 +1,6 @@
 <?php
 
+use App\User;
 use Illuminate\Database\Seeder;
 
 class PostSeeder extends Seeder
@@ -11,8 +12,7 @@ class PostSeeder extends Seeder
      */
     public function run()
     {
-        $user = factory('App\User')->create();
-        auth()->loginUsingId($user->id);
+        auth()->loginUsingId(User::first()->id);
 
         factory('App\Post', 20)->create();
     }

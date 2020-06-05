@@ -3,12 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Post;
+use App\WordPress\WPApiClient;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
-    public function index()
+    public function index(WPApiClient $wp)
     {
+        $wp->importPosts(2);
+
+
+
         $posts = Post::latest()->get();
 
         return view('blog.index', compact('posts'));

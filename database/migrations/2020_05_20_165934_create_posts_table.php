@@ -15,9 +15,11 @@ class CreatePostsTable extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
+            $table->unsignedInteger('wp_id')->nullable();
             $table->string('title')->nullable();
             $table->text('body');
             $table->timestamps();
+            $table->timestamp('published_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
         });
     }
 

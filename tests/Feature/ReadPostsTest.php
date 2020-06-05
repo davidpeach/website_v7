@@ -13,6 +13,8 @@ class ReadPostsTest extends TestCase
     /** @test */
     public function a_visitor_can_see_the_archive_of_published_posts()
     {
+        $this->signIn();
+        
         list($postOne, $postTwo, $postThree) = create('App\Post', [], 3);
 
         $this->get(route('blog'))

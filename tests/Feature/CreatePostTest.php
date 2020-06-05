@@ -18,9 +18,12 @@ class CreatePostTest extends TestCase
         $this->post(route('post.store'), [
             'title' => 'My New Post',
             'body' => 'My new post body'
-        ])->assertStatus(200);
+        ]);
 
-        //
+        $this->assertDatabaseHas('posts', [
+            'title' => 'My New Post',
+            'body' => 'My new post body'
+        ]);
     }
 
     /** @test */

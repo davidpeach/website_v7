@@ -14,6 +14,10 @@ class Post extends Model
         'updated_at'
     ];
 
+    public $dates = [
+        'published_at',
+    ];
+
     public static function boot()
     {
         static::created(function ($post) {

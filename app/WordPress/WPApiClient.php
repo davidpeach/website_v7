@@ -3,6 +3,7 @@
 namespace App\WordPress;
 
 use App\Post;
+use Carbon\Carbon;
 
 class WPApiClient
 {
@@ -30,6 +31,11 @@ class WPApiClient
         }
     }
 
+    protected function carbonDate($date)
+    {
+        return Carbon::parse($date);
+    }
+
     public function createPost(array $attributes)
     {
         $post = Post::create([
@@ -39,5 +45,14 @@ class WPApiClient
             'published_at' => $attributes['date'],
             'updated_at' => $attributes['modified'],
         ]);
+    }
+
+    public function updatePost(Post $post, array $attributes)
+    {
+        $post->title = $attributes['title']['rendered'];
+        $post->body = $attributes['content']['rendered'];
+        $post->updated_at = $attributes['modified'];
+
+        $post->save();
     }
 }

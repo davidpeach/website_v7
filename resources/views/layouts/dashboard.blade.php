@@ -7,7 +7,7 @@
 	<nav class="bg-black text-white flex justify-center mb-10">
 		<a href="{{ route('post.create') }}">Add Post</a>
 	</nav>
-	<main class="w-2/3 m-auto">
+	<main>
     @yield('content')
     </main>
 @endsection

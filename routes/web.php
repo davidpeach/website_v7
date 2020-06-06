@@ -15,15 +15,15 @@ use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'welcome')->name('home');
 
-
 Route::get('/blog', 'PostController@index')->name('blog');
-Route::post('/posts', 'PostController@store')->name('post.store');
-
 Route::get('/stream', 'StreamController@index')->name('stream');
 
 Route::middleware('auth')->group(function () {
-	Route::get('/a', 'Admin\DashboardController@index')->name('dashboard');
-	Route::get('/a/post/create', 'PostController@create')->name('post.create');
+    Route::get('/a', 'Admin\DashboardController@index')->name('dashboard');
+    Route::get('/a/post/create', 'PostController@create')->name('post.create');
+    Route::get('/a/post/{post}/edit', 'PostController@edit')->name('post.edit');
+    Route::post('/posts', 'PostController@store')->name('post.store');
+    Route::patch('/post/{post}', 'PostController@update')->name('post.update');
 });
 
 // Pre Scaffolded Routes

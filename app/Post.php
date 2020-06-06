@@ -3,9 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use VanOns\Laraberg\Models\Gutenbergable;
 
 class Post extends Model
 {
+    use Gutenbergable;
+
     protected $fillable = [
         'title',
         'body',
@@ -20,6 +23,13 @@ class Post extends Model
                 'subject_id' => $post->id,
                 'subject_type' => get_class($post),
             ]);
+
+            $post->lb_content = request()->get('body');
+            $post->save();
+        });
+
+        static::updating(function ($post) {
+            $post->lb_content = request()->get('body');
         });
 
         parent::boot();

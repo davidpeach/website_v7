@@ -14,6 +14,7 @@
         <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
         <link href="https://fonts.googleapis.com/css2?family=Martel&family=Noto+Serif&family=Work+Sans:wght@400;700&display=swap" rel="stylesheet">
 
+        @yield('styles')
 
         <!-- Styles -->
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
@@ -26,6 +27,7 @@
     <body>
         @yield('body')
 
+        @yield('scripts')
         <script src="{{ mix('js/app.js') }}"></script>
         @livewireScripts
     </body>

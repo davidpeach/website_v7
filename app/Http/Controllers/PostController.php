@@ -16,9 +16,11 @@ class PostController extends Controller
 
     public function create()
     {
-        return view('dashboard.create-post');
+        $post = new Post;
+        $action = route('post.store');
+        $method = 'post';
+        return view('dashboard.create-post', compact('post', 'action', 'method'));
     }
-
 
     public function store()
     {
@@ -26,9 +28,29 @@ class PostController extends Controller
             'body' => 'required',
         ]);
 
-        Post::create(request()->all());
+        $post = Post::create(request()->all());
+
+        return redirect()->route('post.edit', $post);
+    }
+
+    public function edit(Post $post)
+    {
+        $action = route('post.update', $post);
+        $method = 'patch';
+        return view('dashboard.create-post', compact('post', 'action', 'method'));
+    }
+
+    public function update(Post $post)
+    {
+        $this->validate(request(), [
+            'body' => 'required',
+        ]);
+
+        $post->update([
+            'title' => request()->get('title'),
+            'body' => request()->get('body'),
+        ]);
 
         return back();
     }
-
 }

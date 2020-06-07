@@ -26,7 +26,7 @@ return [
     |
     */
 
-    'cloud' => env('FILESYSTEM_CLOUD', 's3'),
+    'cloud' => env('FILESYSTEM_CLOUD', 'do'),
 
     /*
     |--------------------------------------------------------------------------
@@ -65,6 +65,15 @@ return [
             'endpoint' => env('AWS_ENDPOINT'),
         ],
 
+        'do' => [
+            'driver' => 's3',
+            'key' => env('DO_ACCESS_KEY_ID'),
+            'secret' => env('DO_SECRET_ACCESS_KEY'),
+            'region' => env('DO_DEFAULT_REGION'),
+            'bucket' => env('DO_BUCKET'),
+            'url' => env('DO_URL'),
+            'endpoint' => env('DO_ENDPOINT'),
+        ],
     ],
 
     /*

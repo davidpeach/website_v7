@@ -21,6 +21,10 @@ Route::post('/posts', 'PostController@store')->name('post.store');
 
 Route::get('/stream', 'StreamController@index')->name('stream');
 
+Route::group(['prefix' => 'laravel-filemanager'], function () {
+     \UniSharp\LaravelFilemanager\Lfm::routes();
+ });
+
 Route::middleware('auth')->group(function () {
 	Route::get('/a', 'Admin\DashboardController@index')->name('dashboard');
 	Route::get('/a/post/create', 'PostController@create')->name('post.create');

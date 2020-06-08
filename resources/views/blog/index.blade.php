@@ -8,6 +8,10 @@
 {{ config('pages.blog.tagline') }}
 @endsection
 
+@section('styles')
+<link rel="stylesheet" href="{{asset('vendor/laraberg/css/laraberg.css')}}">
+@endsection
+
 @section('content')
 	@include('partials._post-create')
 	<section class="w-2/5 m-auto">

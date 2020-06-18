@@ -18,5 +18,8 @@
 		</article>
 		<hr class="w-1/2 m-auto">
 		@endforeach
+		<div class="mt-6 bg-gray-300 p-2 rounded">
+			{{ $posts->links() }}
+		</div>
 	</section>
 @endsection

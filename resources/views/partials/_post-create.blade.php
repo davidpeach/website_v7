@@ -5,7 +5,7 @@
 		x-on:click="open = !open"
 		x-text="open ? 'Close' : 'Open post form'"
 	>Add a post</button>
-	<form method="POST" action="{{ route('post.store') }}" class="bg-gray-30  borde border-gray-50" x-show="open">
+	<form method="POST" action="{{ route('dashboard.post.store') }}" class="bg-gray-30  borde border-gray-50" x-show="open">
 		{!! csrf_field() !!}
 
 		<div>

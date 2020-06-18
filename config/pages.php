@@ -9,6 +9,13 @@ return [
 
 	],
 
+	'about' => [
+
+		'heading' => env('PAGES_ABOUT_HEADING', ''),
+		'tagline' => env('PAGES_ABOUT_TAGLINE', ''),
+
+	],
+
 	'blog' => [
 
 		'heading' => env('PAGES_BLOG_HEADING', ''),

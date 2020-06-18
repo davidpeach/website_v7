@@ -9,12 +9,15 @@
 @endsection
 
 @section('content')
-    <section class="w-2/5 m-auto">
+    <section class="w-2/5 m-auto mt-10">
         @foreach($stream as $activity)
-        <article class="mt-15 pb-15">
-            <h2 class="text-3xl">Published {{ $activity->subject->title }}</h2>
+        <article class="mt-3 pb-3">
+            <h2 class="text-md">Published {{ $activity->subject->title }} <span class="text-sm font-bold text-indigo-500">{{ $activity->subject->created_at->diffForHumans() }}</span></h2>
         </article>
-        <hr class="w-1/2 m-auto">
+        <hr class="w-1/2">
         @endforeach
+        <div class="mt-6 bg-gray-300 p-2 rounded">
+            {{ $stream->links() }}
+        </div>
     </section>
 @endsection

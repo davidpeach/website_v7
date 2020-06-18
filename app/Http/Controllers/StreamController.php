@@ -9,7 +9,8 @@ class StreamController extends Controller
 {
     public function index()
     {
-        $stream = Activity::all();
+        $stream = Activity::latest()
+            ->paginate(config('pagination.stream-index'));
 
         return view('stream.index', compact('stream'));
     }

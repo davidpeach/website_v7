@@ -15,7 +15,7 @@ class CreatePostTest extends TestCase
     {
         $this->signIn();
 
-        $this->post(route('post.store'), [
+        $this->post(route('dashboard.post.store'), [
             'title' => 'My New Post',
             'body' => 'My new post body'
         ]);
@@ -31,7 +31,7 @@ class CreatePostTest extends TestCase
     {
         $this->withExceptionHandling()->signIn();
 
-        $this->post(route('post.store'), [
+        $this->post(route('dashboard.post.store'), [
             'title' => 'My New Post',
         ])->assertSessionHasErrors('body');
     }

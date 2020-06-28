@@ -16,9 +16,6 @@ style="background-image: url(https://cdn.davidpeach.co.uk/2017/10/elle-fanning-n
 			</div>
 			<nav class="flex flex-grow justify-end text-lg">
 				<a href="/">Home</a>
-				<a href="{{ route('about') }}" class="ml-6">About</a>
-				<a href="{{ route('blog') }}" class="ml-6">Blog</a>
-				<a href="{{ route('stream') }}" class="ml-6">Stream</a>
 				@include('components.login-logout')
 			</nav>
 		</div>

@@ -24,4 +24,9 @@ class Post extends Model
 
         parent::boot();
     }
+
+    public function images()
+    {
+        return $this->belongsToMany(Image::class);
+    }
 }

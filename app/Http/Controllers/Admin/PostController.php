@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Image;
 use App\Post;
 use Illuminate\Http\Request;
 
@@ -25,9 +26,19 @@ class PostController extends Controller
     {
         $this->validate(request(), [
             'body' => 'required',
+            'image' => 'image',
         ]);
 
-        Post::create(request()->all());
+        $post = Post::create(request()->all());
+
+        if (request()->has('image')) {
+            $image = Image::create([
+                'path' => request()->file('image')->store('images', 'public'),
+            ]);
+
+            $post->images()->attach($image);
+        }
+
 
         return redirect()->route('dashboard.post.index');
     }

@@ -14,7 +14,7 @@ class PostTest extends TestCase
     {
         $this->signIn();
 
-        $post = create('App\Post', [ 
+        $post = create('App\Post', [
             'title' => 'My blog post',
         ]);
 

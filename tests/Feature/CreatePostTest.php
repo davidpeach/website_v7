@@ -52,6 +52,24 @@ class CreatePostTest extends TestCase
     }
 
     /** @test */
+    public function a_post_body_can_be_written_in_markdown()
+    {
+        $this->signIn();
+
+        $this->post(route('dashboard.post.store'), [
+            'title' => 'My New Post',
+            'body' => "## My header 2\rThis is a paragraph"
+        ]);
+
+        $post = Post::first();
+
+        $this->assertEquals(
+            "<h2>My header 2</h2>\n<p>This is a paragraph</p>\n",
+            $post->body_html
+        );
+    }
+
+    /** @test */
     public function a_post_can_have_an_image()
     {
         $this->signIn();

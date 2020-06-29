@@ -2,6 +2,7 @@
 
 namespace App;
 
+use GrahamCampbell\Markdown\Facades\Markdown;
 use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
@@ -28,5 +29,11 @@ class Post extends Model
     public function images()
     {
         return $this->belongsToMany(Image::class);
+    }
+
+    public function setBodyAttribute($body)
+    {
+        $this->attributes['body'] = $body;
+        $this->attributes['body_html'] = Markdown::convertToHtml($body);
     }
 }

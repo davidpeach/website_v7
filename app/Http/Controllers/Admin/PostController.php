@@ -26,19 +26,21 @@ class PostController extends Controller
     {
         $this->validate(request(), [
             'body' => 'required',
-            'image' => 'image',
+            'image.*' => 'image',
         ]);
 
         $post = Post::create(request()->all());
 
         if (request()->has('image')) {
-            $image = Image::create([
-                'path' => request()->file('image')->store('images', 'public'),
-            ]);
 
-            $post->images()->attach($image);
+            foreach (request()->file('image') as $imageToUpload) {
+                $image = Image::create([
+                    'path' => $imageToUpload->store('images', 'public'),
+                ]);
+
+                $post->images()->attach($image);
+            }
         }
-
 
         return redirect()->route('dashboard.post.index');
     }

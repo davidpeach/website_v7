@@ -53,21 +53,44 @@ class CreatePostTest extends TestCase
     /** @test */
     public function a_post_can_have_an_image()
     {
-        // Given we have a user
         $this->signIn();
 
-        // When we create a post with an image
         Storage::fake('public');
 
         $this->json('POST', route('dashboard.post.store'), [
             'body' => 'this is my image blog post.',
-            'image' => $file = UploadedFile::fake()->image('blog-image.jpg'),
+            'image' => [
+                $file = UploadedFile::fake()->image('blog-image.jpg'),
+            ],
         ]);
 
         $post = Post::first();
         $this->assertCount(1, $post->images);
 
-        // Then that image should be displayed.
         Storage::disk('public')->assertExists('images/' . $file->hashName());
+    }
+
+    /** @test */
+    public function a_post_can_have_multiple_images()
+    {
+        $this->signIn();
+
+        Storage::fake('public');
+
+        $this->json('POST', route('dashboard.post.store'), [
+            'body' => 'this is my image blog post.',
+            'image' => [
+                $fileOne = UploadedFile::fake()->image('blog-image-1.jpg'),
+                $fileTwo = UploadedFile::fake()->image('blog-image-2.jpg'),
+            ],
+        ]);
+
+        $post = Post::first();
+        $this->assertCount(2, $post->images);
+
+        Storage::disk('public')
+            ->assertExists('images/' . $fileOne->hashName());
+        Storage::disk('public')
+            ->assertExists('images/' . $fileTwo->hashName());
     }
 }

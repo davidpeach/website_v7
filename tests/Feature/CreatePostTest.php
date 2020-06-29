@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Post;
+use App\Utilities\Images\ImageSizes;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Http\UploadedFile;
@@ -67,7 +68,7 @@ class CreatePostTest extends TestCase
         $post = Post::first();
         $this->assertCount(1, $post->images);
 
-        Storage::disk('public')->assertExists('images/' . $file->hashName());
+        Storage::disk('public')->assertExists(ImageSizes::ORIGINAL_PATH . $file->hashName());
     }
 
     /** @test */
@@ -89,8 +90,8 @@ class CreatePostTest extends TestCase
         $this->assertCount(2, $post->images);
 
         Storage::disk('public')
-            ->assertExists('images/' . $fileOne->hashName());
+            ->assertExists(ImageSizes::ORIGINAL_PATH . $fileOne->hashName());
         Storage::disk('public')
-            ->assertExists('images/' . $fileTwo->hashName());
+            ->assertExists(ImageSizes::ORIGINAL_PATH . $fileTwo->hashName());
     }
 }

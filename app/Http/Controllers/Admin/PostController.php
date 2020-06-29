@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Image;
 use App\Post;
+use App\Utilities\Images\ImageSizes;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -35,7 +36,7 @@ class PostController extends Controller
 
             foreach (request()->file('image') as $imageToUpload) {
                 $image = Image::create([
-                    'path' => $imageToUpload->store('images', 'public'),
+                    'path' => $imageToUpload->store(ImageSizes::ORIGINAL_PATH, 'public'),
                 ]);
 
                 $post->images()->attach($image);

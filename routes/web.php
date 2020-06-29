@@ -43,6 +43,9 @@ Route::middleware('auth')->group(function () {
     Route::post('/a/posts', 'Admin\PostController@store')
         ->name('dashboard.post.store');
 
+    Route::post('/a/images', 'Admin\ImageController@store')
+        ->name('dashboard.image.store');
+
 });
 
 // Pre Scaffolded Routes

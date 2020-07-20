@@ -63,6 +63,8 @@ class CreatePostTest extends TestCase
 
         $post = Post::first();
 
+        $this->get('/blog')->assertSee("<h2>My header 2</h2>\n<p>This is a paragraph</p>\n");
+
         $this->assertEquals(
             "<h2>My header 2</h2>\n<p>This is a paragraph</p>\n",
             $post->body_html

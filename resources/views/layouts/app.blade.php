@@ -1,29 +1,28 @@
 @extends('layouts.base')
 
+@push('styles')
+<link rel="stylesheet" href="{{ mix('css/app.css') }}">
+@endpush
+
 @section('body')
 
-<header
-class="bg-fixed bg-cover bg-center bg-no-repeat"
-style="background-image: url(https://cdn.davidpeach.co.uk/2017/10/elle-fanning-neon-demon-1.jpg)">
-	<div
-	class="h-screen-70 flex flex-col justify-between text-white bg-black bg-opacity-50"
-
-	>
-		<div class="flex items-baseline justify-between py-6 px-20">
-			<div class="flex items-baseline">
-				<a href="#" class="text-2xl font-bold">{{ config('app.name') }}</a>
-				<p class="text-xl ml-3">{{ config('app.tagline') }}</p>
+<header class="page-header" style="background-image: url(https://cdn.davidpeach.co.uk/2017/10/elle-fanning-neon-demon-1.jpg)">
+	<div class="page-header-inner-wrap">
+		<div class="page-header__nav-banner">
+			<div class="page-header__nav-banner__title-wrap">
+				<a href="/" class="site-title">{{ config('app.name') }}</a>
+				<p class="page-header__site-tagline">{{ config('app.tagline') }}</p>
 			</div>
-			<nav class="flex flex-grow justify-end text-lg">
+			<nav class="page-header__nav-banner__main-nav-wrap main-nav">
 				<a href="/">Home</a>
 				@include('components.login-logout')
 			</nav>
 		</div>
-		<div class="text-center mb-10">
-			<h1 class="text-6xl font-page-heading font-bold">
+		<div class="page-header__title-wrap">
+			<h1 class="page-header__page-title">
 				@yield('page_heading')
 			</h1>
-			<p class="m-auto mt-6 text-4xl max-w-6xl font-page-heading">
+			<p class="page-header__page-tagline">
 				@yield('page_tagline')
 			</p>
 		</div>

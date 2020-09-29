@@ -1,5 +1,9 @@
 @extends('layouts.base')
 
+@push('styles')
+<link rel="stylesheet" href="{{ mix('css/admin.css') }}">
+@endpush
+
 @section('body')
 	<header class="bg-gray-300 py-3 text-center">
 		<h1><a href="{{ route('dashboard') }}">Dashboard</a></h1>
